@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  namespace: giropops
+  labels:
+    app: nginx-deployment
+    fruta: banana
+spec:
+  replicas: 14
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: nginx-deployment
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: nginx-deployment
+    spec:
+      containers:
+      - name: nginx-opa  
+        image: nginx:1.17.0
+        resources:
+          limits:
+            cpu: "300m"
+            memory: "256Mi"
+          requests:
+            cpu: "100m"
+            memory: "64Mi"
