@@ -5,28 +5,26 @@ metadata:
   namespace: giropops
   labels:
     app: nginx-deployment
+    fruta: banana
 spec:
   replicas: 10
   selector:
     matchLabels:
       app: nginx-deployment
   strategy:
-    type: RollingUpdate
-    rollingUpdate:
-        maxSurge: 10%
-        maxUnavailable: 25% 
+    type: Recreate
   template:
     metadata:
       labels:
         app: nginx-deployment
     spec:
       containers:
-      - name: nginx  
-        image: nginx:1.15.0
+      - name: nginx-opa  
+        image: nginx:1.17.0
         resources:
           limits:
             cpu: "300m"
             memory: "256Mi"
           requests:
-            cpu: "300m"
+            cpu: "100m"
             memory: "64Mi"
