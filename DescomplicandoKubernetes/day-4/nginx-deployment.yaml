@@ -38,7 +38,7 @@ spec:
               command:
                 - curl
                 - -f
-                - http://localhot:80/
+                - http://localhost:80/
             initialDelaySeconds: 10
             periodSeconds: 10
             timeoutSeconds: 5
