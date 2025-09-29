@@ -56,10 +56,10 @@ Sendo assim, o `control plane` é responsável por gerenciar o cluster, como por
 
 * Criar e gerenciar os recursos do cluster, como por exemplo, `namespaces`, `deployments`, `services`, `configmaps`, `secrets`, etc.
 * Gerenciar os `workers` do cluster.
-* Gerenciar a rede do cluster. 
+* Gerenciar a rede do cluster.
 * O `etcd` desempenha um papel crucial na manutenção da estabilidade e confiabilidade do cluster. Ele armazena as informações de configuração de todos os componentes do `control plane`, incluindo os detalhes dos serviços, `pods` e outros recursos do cluster. Graças ao seu design distribuído, o `etcd` é capaz de tolerar falhas e garantir a continuidade dos dados, mesmo em caso de falha de um ou mais nós. Além disso, ele suporta a comunicação segura entre os componentes do cluster, usando criptografia `TLS` para proteger os dados.
 
-* O `scheduler` é o componente responsável por decidir em qual nó os `pods` serão executados, levando em consideração os requisitos e os recursos disponíveis. O `scheduler` também monitora constantemente a situação do cluster e, se necessário, ajusta a distribuição dos pods para garantir a melhor utilização dos recursos e manter a harmonia entre os componentes. 
+* O `scheduler` é o componente responsável por decidir em qual nó os `pods` serão executados, levando em consideração os requisitos e os recursos disponíveis. O `scheduler` também monitora constantemente a situação do cluster e, se necessário, ajusta a distribuição dos pods para garantir a melhor utilização dos recursos e manter a harmonia entre os componentes.
 
 * O `controller-manager` é responsável por gerenciar os diferentes controladores que regulam o estado do cluster e mantêm tudo funcionando. Ele monitora constantemente o estado atual dos recursos e compara-os com o estado desejado, fazendo ajustes conforme necessário.
 
@@ -312,7 +312,7 @@ Run "kubectl apply -f [podnetwork].yaml" with one of the options listed at:
 Then you can join any number of worker nodes by running the following on each as root:
 
 kubeadm join 172.31.57.89:6443 --token if9hn9.xhxo6s89byj9rsmd \
-	--discovery-token-ca-cert-hash sha256:ad583497a4171d1fc7d21e2ca2ea7b32bdc8450a1a4ca4cfa2022748a99fa477 
+	--discovery-token-ca-cert-hash sha256:ad583497a4171d1fc7d21e2ca2ea7b32bdc8450a1a4ca4cfa2022748a99fa477
 
 ```
 
@@ -508,9 +508,11 @@ Para isso, vamos novamente utilizar o comando `kubeadm`, porém ao invés de exe
 
 Quando inicializamos o nosso cluster, o `kubeadm` nos mostrou o comando que precisamos executar no novos nodes, para que eles possam ser adicinados ao cluster como `workers`.
 
+
 ```bash
 sudo kubeadm join 172.31.57.89:6443 --token if9hn9.xhxo6s89byj9rsmd \
-	--discovery-token-ca-cert-hash sha256:ad583497a4171d1fc7d21e2ca2ea7b32bdc8450a1a4ca4cfa2022748a99fa477 
+	--discovery-token-ca-cert-hash sha256:ad583497a4171d1fc7d21e2ca2ea7b32bdc8450a1a4ca4cfa2022748a99fa477
+  sudo kubeadm token create --print-join-command para saber qual 
 ```
 
 &nbsp;
@@ -578,7 +580,7 @@ k8s-03   Ready    <none>          6m   v1.26.3
 
 &nbsp;
 
-O Weave Net é um plugin de rede que permite que os pods se comuniquem entre si. Ele também permite que os pods se comuniquem com o mundo externo, como outros clusters ou a Internet. 
+O Weave Net é um plugin de rede que permite que os pods se comuniquem entre si. Ele também permite que os pods se comuniquem com o mundo externo, como outros clusters ou a Internet.
 Quando o Kubernetes é instalado, ele resolve vários problemas por si só, porém quando o assunto é a comunicação entre os pods, ele não resolve. Por isso, precisamos instalar um plugin de rede para resolver esse problema.
 
 ##### O que é o CNI?
@@ -603,7 +605,7 @@ Esses são apenas alguns dos plugins de rede mais populares e amplamente utiliza
 
 Agora, qual você deverá escolher? A resposta é simples: o que melhor se adequar às suas necessidades. Cada plugin de rede tem suas vantagens e desvantagens, e você deve escolher aquele que melhor se adequar ao seu ambiente.
 
-Minha dica, procure não ficar inventando muita moda, tenta utilizar os que são já validados e bem aceitos pela comunidade, como o Weave Net, Calico, Flannel, etc. 
+Minha dica, procure não ficar inventando muita moda, tenta utilizar os que são já validados e bem aceitos pela comunidade, como o Weave Net, Calico, Flannel, etc.
 
 O meu preferido é o `Weave Net` pela simplicidade de instalação e os recursos oferecidos.
 
@@ -729,7 +731,7 @@ Allocated resources:
 Events:
   Type     Reason                   Age   From             Message
   ----     ------                   ----  ----             -------
-  Normal   Starting                 56m   kube-proxy       
+  Normal   Starting                 56m   kube-proxy
   Normal   Starting                 56m   kubelet          Starting kubelet.
   Warning  InvalidDiskCapacity      56m   kubelet          invalid capacity 0 on image filesystem
   Normal   NodeHasSufficientMemory  56m   kubelet          Node k8s-01 status is now: NodeHasSufficientMemory
